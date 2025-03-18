@@ -1,0 +1,20 @@
+
+<div class="center-container" *ngIf="products">
+    <div class="product-card" *ngFor="let product of products">
+        <div class="product-image">
+            <img [src]="product.processedImg" *ngIf="product.processedImg" alt="{{ product.name }} Image">
+        </div>
+        <button mat-button (click)="paginaVergroten()"><i class="fas fa-plus"></i> Pagina Vegroten</button>
+        <button mat-button (click)="paginaVerkleinen()"><i class="fas fa-minus"></i> Pagina Verkleinen</button>
+        <div class="product-details">
+            <h2>{{ product.productName }}</h2>
+            <p class="description">{{ product.productDescription }}</p>
+            <p class="price">Prijs: €{{ product.price }}</p>
+            <button (click)="removeProductFromWishlist(product.id)" class="remove-button">
+                <span class="material-icons">favorite_border</span>Verwijder uit wenslijst
+            </button>
+            
+            
+        </div>
+    </div>
+</div>

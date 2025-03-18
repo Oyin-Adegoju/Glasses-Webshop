@@ -1,0 +1,39 @@
+<div *ngIf="!isCustomerLoggedIn && !isAdminLoggedIn">
+  <mat-toolbar color="primary" class="navbar">
+        <span class="navbar-brand">EuniqBrillen</span>
+        <span class="spacer"></span>
+        <button mat-button routerLink="/order" routerLinkActive="active">Traceer bestelling</button>
+        <button mat-button routerLink="/register" routerLinkActive="active">Aanmelden</button>
+        <button mat-button routerLink="/login" routerLinkActive="active">Inloggen</button>
+    </mat-toolbar>
+  </div>
+
+
+
+<div *ngIf="isAdminLoggedIn">
+  <mat-toolbar color="primary" class="navbar">
+    <span class="navbar-brand">EuniqBrillen </span>
+    <span class="spacer"></span>
+    <button mat-button routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</button>
+    <button mat-button routerLink="/admin/category" routerLinkActive="active">Categorie</button>
+    <button mat-button routerLink="/admin/product" routerLinkActive="active">Product</button>
+    <button mat-button routerLink="/admin/orders" routerLinkActive="active">Mijn Bestellingen</button>
+    <button mat-button routerLinkActive="active" (click)="logout()">Uitloggen</button>
+
+</mat-toolbar>
+
+
+</div>
+<div *ngIf="isCustomerLoggedIn">
+  <mat-toolbar color="primary" class="navbar">
+      <span class="navbar-brand">EuniqBrillen</span>
+      <span class="spacer"></span>
+      <button mat-button routerLink="/customer/dashboard" routerLinkActive="active">Dashboard</button>
+      <button mat-button routerLink="/customer/cart" routerLinkActive="active">Winkelmand</button>
+      <button mat-button routerLink="/customer/my_orders" routerLinkActive="active">Mijn Bestellingen</button>
+      <button mat-button routerLink="/customer/wishlist" routerLinkActive="active">Wenslijst</button>
+      <button mat-button routerLink="/customer/profile" routerLinkActive="active">Mijn Profiel</button>
+      <button mat-button routerLinkActive="active" (click)="logout()">Uitloggen</button>
+  </mat-toolbar>
+</div>
+<router-outlet></router-outlet>

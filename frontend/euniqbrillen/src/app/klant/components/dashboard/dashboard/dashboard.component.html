@@ -1,0 +1,87 @@
+<div *ngIf="products.length > 0; else emptyCart"  >
+
+
+    <form [formGroup]="searchProductForm" class="search-form" (submit)="submitForm()">
+      <mat-form-field appearance="outline" class="search-input">
+        <mat-label>Voeg trefword in om te zoeken</mat-label>
+        <input matInput formControlName="title">
+        <button mat-button matSuffix color="primary" [disabled]="searchProductForm.invalid">
+          <mat-icon>zoeken</mat-icon>
+        </button>
+        <mat-error *ngIf="searchProductForm.get('title').invalid">Trefword is vereist</mat-error>
+      </mat-form-field>
+      
+    </form>
+
+
+  
+    <div class="category-filter">
+      <h2 class="filter-title">Categorie Filter</h2>
+      <ul class="category-list">
+        <li *ngFor="let category of categories" class="category-item">
+          <label class="category-label">
+            <input type="checkbox" [(ngModel)]="category.checked" (change)="applyCategoryFilter()">
+            <span class="checkmark"></span>
+            <span class="category-name">{{ category.name }}</span>
+          </label>
+        </li>
+      </ul>
+    </div>
+
+    <button mat-button (click)="paginaVergroten()"><i class="fas fa-plus"></i> Pagina Vegroten</button>
+    <button mat-button (click)="paginaVerkleinen()"><i class="fas fa-minus"></i> Pagina Verkleinen</button>
+    
+  
+
+    <div class="product-list">
+        <mat-card class="product-card" *ngFor="let product of filteredProducts">
+          <div class="product-image-container">
+
+            <!-- Add event listeners for magnifying effect -->
+            <div class="product-image"
+                 (mouseenter)="setMagnifiedImage(product.processedImg)"
+                 (mouseleave)="clearMagnifiedImage()">
+              <img [src]="product.processedImg" alt="product-image">
+            </div>
+            <div class="magnifying-glass"></div>
+            <!-- Display magnified image when hovered -->
+            <div class="magnified-image-container" *ngIf="zoomedImage === product.processedImg">
+              <img [src]="zoomedImage" alt="magnified-image">
+            </div>
+          </div>
+
+            <div class="product-details">
+                <h2 class="product-name" routerLink="/customer/product/{{product.id}}">{{ product.name }}</h2>
+                <p class="product-description">{{ product.description }}</p>
+
+                <mat-divider></mat-divider>
+
+                <div class="product-info">
+                    <div class="info-row">
+                        <span class="info-label">Prijs:</span>
+                        <span class="info-value">€{{ product.price }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Categorie:</span>
+                        <span class="info-value">{{ product.categoryName }}</span>
+                    </div>
+                </div>
+
+                <mat-divider></mat-divider>
+
+                <div class="actions">
+                    <button mat-raised-button color="primary" class="update-button" (click)="addToCart(product.id)">
+                        Voeg toe aan winkelmandje
+                    </button>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</div>
+
+<ng-template #emptyCart>
+    <div class="empty-cart">
+        <mat-icon class="icon">verwijder uit winkelmandje</mat-icon>
+        <span>Niks belangerijks hier.</span>
+    </div>
+</ng-template>

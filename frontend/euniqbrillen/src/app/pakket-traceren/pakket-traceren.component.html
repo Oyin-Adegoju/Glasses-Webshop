@@ -1,0 +1,47 @@
+<form [formGroup]="searchOrderForm" class="search-form" (submit)="submitForm()">
+    <mat-form-field appearance="outline" class="search-input">
+        <mat-label>Typ in Tracking Id om te zoeken</mat-label>
+        <input matInput formControlName="trackingId">
+        <button mat-button matSuffix color="primary" [disabled]="searchOrderForm.invalid">
+            <mat-icon>zoek</mat-icon>
+        </button>
+        <mat-error *ngIf="searchOrderForm.get('trackingId').invalid">Tracking ID is vereised</mat-error>
+    </mat-form-field>
+</form>
+
+
+
+<!-- order-details.component.html -->
+<div class="order-details-container" *ngIf="order">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Bestelling Details</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="order-detail">
+                Tracking ID:
+                <strong>{{ order.trackingId }}</strong>
+            </div>
+            <div class="order-detail">
+                Gebruikersnaam:
+                <strong>{{ order.userName }}</strong>
+            </div>
+            <div class="order-detail">
+                Adres:
+                <strong>{{ order.address }}</strong>
+            </div>
+            <div class="order-detail">
+                Totaal Prijs:
+                <strong>{{ order.amount | currency }}</strong>
+            </div>
+            <div class="order-detail">
+                Status:
+                <strong>{{ order.orderStatus }}</strong>
+            </div>
+            <div class="order-detail">
+                Datum:
+                <strong>{{ order.date | date }}</strong>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

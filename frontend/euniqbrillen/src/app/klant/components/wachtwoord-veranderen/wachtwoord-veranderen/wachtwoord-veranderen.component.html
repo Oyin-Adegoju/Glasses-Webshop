@@ -1,0 +1,42 @@
+<div class="container">
+    <mat-card>
+        <mat-card-title>Verander wachtwoord</mat-card-title>
+        <mat-card-content>
+            <form [formGroup]="changePasswordForm" (ngSubmit)="onSubmit()">
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Oud wachtwoord</mat-label>
+                    <input matInput type="wachtwoord" formControlName="oudWachtwoord" placeholder="Oud wachtwoord" required>
+                    <mat-error *ngIf="changePasswordForm.get('oudWachtwoord').invalid && changePasswordForm.get('oudWachtwoord').touched">
+                        Voer AUB een geldig wachtwoord in.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>New Password</mat-label>
+                    <input matInput type="wachtwoord" formControlName="nieuwWachtwoord" placeholder="Nieuw wachtwoord" required>
+                    <mat-error *ngIf="changePasswordForm.get('nieuwWachtwoord').invalid && changePasswordForm.get('nieuwWachtwoord').touched">
+                        Voer AUB een geldig wachtwoord in.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Bevestig je wachtwoord</mat-label>
+                    <input matInput type="wachtwoord" formControlName="bevestigWachtwoord" placeholder="Bevestig wachtwoord"
+                        required>
+                    <mat-error
+                        *ngIf="changePasswordForm.get('bevestigWachtwoord').invalid && changePasswordForm.get('bevestigWachtwoord').touched">
+                        Wachtwoorden komen niet overheen.
+                    </mat-error>
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" type="submit" [disabled]="changePasswordForm.invalid">Verander wachtwoord</button>
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button color="primary" routerLink="/customer/profile">Wil je jou profiel updaten?</button>
+        </mat-card-actions>
+        <button mat-button (click)="paginaVergroten()"><i class="fas fa-plus"></i> Pagina Vegroten</button>
+        <button mat-button (click)="paginaVerkleinen()"><i class="fas fa-minus"></i> Pagina Verkleinen</button>
+    </mat-card>
+</div>

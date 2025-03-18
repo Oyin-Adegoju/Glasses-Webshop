@@ -1,0 +1,51 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+mat-card {
+    max-width: 25rem; /* 400px converted to rem */
+    width: 100%;
+    padding: 1.25rem; /* 20px converted to rem */
+
+    @media screen and (max-width: 25rem) { /* 400px converted to rem */
+        max-width: 90%;
+    }
+}
+
+mat-card-title {
+    text-align: center;
+    font-size: 1.5rem; /* 24px converted to rem */
+    margin-bottom: 1.25rem; /* 20px converted to rem */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+mat-form-field {
+    width: 100%;
+    margin-bottom: 1.25rem; /* 20px converted to rem */
+}
+
+button {
+    width: 100%;
+}
+
+@media screen and (max-width: 25rem) { /* 400px converted to rem */
+    mat-card-title {
+        font-size: 1.25rem; /* 20px converted to rem */
+    }
+
+    mat-form-field {
+        margin-bottom: 0.625rem; /* 10px converted to rem */
+    }
+}
+
+.error-snackbar {
+    background-color: #f44336 !important;
+}

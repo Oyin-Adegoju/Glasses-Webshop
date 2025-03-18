@@ -1,0 +1,42 @@
+
+
+<!-- Product Section -->
+<div class="center-container" *ngIf="product">
+    <div class="product-card">
+        <div class="product-image">
+            <img [src]="product.processedImg" alt="{{ product.name }} Image">
+        </div>
+        <div class="product-details">
+            <h2>{{ product.name }}</h2>
+            <p class="description">{{ product.description }}</p>
+            <p class="price">Prjs: €{{ product.price }}</p>
+            <p class="category">Categorie: {{ product.categoryName }}
+                <mat-icon (click)="addToWishlist()" class="heart-icon"
+                    style="cursor: pointer; margin-top: 10px;">favorite_border</mat-icon>
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Reviews Section -->
+<h1 class="section-heading" *ngIf="reviews.length >0">Klant recensies</h1>
+<div *ngIf="reviews" class="review-list">
+    <div class="center-container">
+        <div *ngFor="let review of reviews" class="review-card">
+            <div class="review-image">
+                <img [src]="review.processedImg" *ngIf="review.processedImg" alt="{{ review.description }} Image" class="small-image">
+            </div>
+            <div class="review-details">
+                <h2>{{ review.description }}</h2>
+                <div class="details-row">
+                    <p class="rating">Beordeling: {{ review.rating }} -</p>
+                    <p class="username">Gebruikersnaam: {{ review.username }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
